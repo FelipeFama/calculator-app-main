@@ -23,4 +23,11 @@ body {
 body::-webkit-scrollbar {
   display: none; 
 }
+
+.theme-btn.active {
+    background-color: ${({ theme }) => theme.colors.equalsKey};
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.equalKeyHover};
+    }
+  }
 `;

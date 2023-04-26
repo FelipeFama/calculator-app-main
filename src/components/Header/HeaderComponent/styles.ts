@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
+  color: ${({ theme }) => theme.colors.headerText};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
