@@ -6,11 +6,28 @@ import Header from "./components/Header/HeaderComponent";
 
 export default function App() {
   const [selectedTheme, setSelectedTheme] = useState(themeOne);
-  console.log(selectedTheme);
+
+  const HandleThemeChange = (theme: typeof themeOne): void => {
+    setSelectedTheme(theme);
+    toggleActiveTheme(theme);
+    localStorage.setItem("current-theme", JSON.stringify(theme));
+  };
+
+  function toggleActiveTheme(theme: typeof themeOne) {
+    const themeBtns = document.querySelectorAll(".theme-btn");
+    themeBtns.forEach((themeBtn) => {
+      if (themeBtn.classList.contains(theme.name)) {
+        themeBtn.classList.add("active");
+      } else {
+        themeBtn.classList.remove("active");
+      }
+    });
+  }
+
   return (
     <ThemeProvider theme={selectedTheme}>
       <GlobalStyles />
-      <Header />
+      <Header HandleThemeChange={HandleThemeChange} />
     </ThemeProvider>
   );
 }

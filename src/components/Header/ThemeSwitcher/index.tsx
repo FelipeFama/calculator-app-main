@@ -1,12 +1,11 @@
-import React from "react";
 import { Themes } from "./styles";
 import ThemeButtons from "../ThemeButtons";
 
-export default function ThemeSwitcher() {
+export default function ThemeSwitcher(props: any) {
   return (
     <Themes>
       <p>THEME</p>
-      <ThemeButtons />
+      <ThemeButtons HandleThemeChange={props.HandleThemeChange} />
     </Themes>
   );
 }
