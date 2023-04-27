@@ -11,9 +11,10 @@ export const ThemeToggle = styled.nav`
 export const ThemeValue = styled.section`
   background-color: ${({ theme }) => theme.colors.keypad};
   display: flex;
+  justify-content: center;
   flex-direction: row;
   border-radius: 15px;
-  padding: 5px 4px;
+  padding: 5px 3px;
   width: 60px;
   max-width: 100%;
 `;
