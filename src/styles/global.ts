@@ -9,13 +9,13 @@ export const GlobalStyles = createGlobalStyle`
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
   -ms-overflow-style: none; 
   scrollbar-width: none; 
   overflow-y: scroll;
-  box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.background};
   font-family: var(--main-font);
 }

@@ -2,7 +2,8 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./styles/global";
 import { useState } from "react";
 import { themeOne } from "./styles/themes";
-import Header from "./components/Header/HeaderComponent";
+import Header from "./components/header/Header";
+import CalculatorComponent from "./components/calculator/Calculator";
 
 export default function App() {
   const [selectedTheme, setSelectedTheme] = useState(themeOne);
@@ -28,6 +29,7 @@ export default function App() {
     <ThemeProvider theme={selectedTheme}>
       <GlobalStyles />
       <Header HandleThemeChange={HandleThemeChange} />
+      <CalculatorComponent />
     </ThemeProvider>
   );
 }
