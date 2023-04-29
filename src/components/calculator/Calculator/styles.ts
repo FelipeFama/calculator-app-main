@@ -10,4 +10,10 @@ export const Calculator = styled.section`
   * {
     transition: background-color 1s, color 0.1s ease-in-out;
   }
+  button {
+    border: none;
+    font-size: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
 `;
