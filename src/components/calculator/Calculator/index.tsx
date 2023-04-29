@@ -1,4 +1,3 @@
-import React from "react";
 import { Calculator } from "./styles";
 import { Screen } from "../Screen";
 import { Keypad } from "../Keypad";
