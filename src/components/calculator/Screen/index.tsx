@@ -1,9 +1,16 @@
-import React from "react";
+import { forwardRef } from "react";
+import { ShowScreen } from "./styles";
 
-export default function Screen() {
-  return (
-    <article>
-      <div></div>
-    </article>
-  );
+interface ScreenProps {
+  calc?: string;
 }
+
+export const Screen = forwardRef<HTMLParagraphElement, ScreenProps>(
+  (props, ref) => {
+    return (
+      <ShowScreen>
+        <p ref={ref}>{props.calc || "0"}</p>
+      </ShowScreen>
+    );
+  }
+);
