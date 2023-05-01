@@ -11,4 +11,7 @@ export const Header = styled.header`
   margin-top: 5.5rem;
   padding: 1rem 0;
   align-items: center;
+  @media screen and (max-width: 600px) {
+    width: 90%;
+  }
 `;

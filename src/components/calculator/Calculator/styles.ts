@@ -16,4 +16,7 @@ export const Calculator = styled.section`
     font-weight: 700;
     cursor: pointer;
   }
+  @media screen and (max-width: 600px) {
+    width: 90%;
+  }
 `;

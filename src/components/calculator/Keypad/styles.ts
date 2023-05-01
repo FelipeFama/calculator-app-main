@@ -13,6 +13,9 @@ export const PressKeys = styled.article`
   button {
     border-radius: 10px;
   }
+  @media screen and (max-width: 440px) {
+    padding: 1rem;
+  }
 `;
 
 export const NumberKeys = styled.button`
