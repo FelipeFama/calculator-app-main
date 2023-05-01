@@ -1,7 +1,7 @@
 import { Calculator } from "./styles";
 import { Screen } from "../Screen";
 import { Keypad } from "../Keypad";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function CalculatorComponent() {
   const [calc, setCalc] = useState<string>("");
@@ -11,59 +11,51 @@ export default function CalculatorComponent() {
   const ref = useRef<HTMLDivElement>(null);
 
   const updateCalc = (value: string) => {
-    const displayValue = ref.current;
-
-    if (value === "0" && calc === "0") {
-      return clear;
-    } else if (
-      (operations.includes(value) && calc === "") ||
-      (operations.includes(value) && operations.includes(calc.slice(-1)))
-    ) {
-      return;
-    } else if (!operations.includes(value)) {
-      setCalc((+calc + +value).toString());
-
-      if (calc.length > 7) {
-        displayValue!.style.fontSize = "2.5rem";
-      }
-      if (calc.length === 11 && !operations.includes(value)) {
-        displayValue!.style.width = "fit-content";
-        displayValue!.style.overflow = "hidden";
-        return console.log(setCalc(calc.toString()));
-      } else if (calc.length === 11 && operations.includes(value)) {
-        console.log("hello");
-      }
-    }
-
     if (calculated === true && operations.includes(value)) {
       setCalculated(false);
+    } else if (calculated === true && !operations.includes(value)) {
+      setCalculated(false);
+      return setCalc(value);
+    } else if (calculated === true && value === "0") {
+      setCalculated(false);
+      return setCalc("");
     }
+
+    setCalc(calc + value);
   };
 
   const calculate = () => {
-    if (eval(calc) === undefined) {
-      return;
-    }
     setCalculated(true);
     setCalc(eval(calc).toString());
   };
 
   const clear = () => {
-    setCalculated(false);
     setCalc("");
   };
 
   const del = () => {
-    if (calc === "") {
-      return;
-    }
-    const displayValue = ref.current;
-    if (calc.length < 7) {
-      displayValue!.style.fontSize = "3.3rem";
-    }
     const value = calc.slice(0, -1);
     setCalc(value);
   };
+
+  const handleKeyDown = () => {
+    document.addEventListener("keydown", onKeyDown);
+  };
+
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (operations.includes(e.key) || numbers.includes(e.key)) {
+      updateCalc(e.key);
+    } else if (e.key === "Enter" || e.key === "=") {
+      calculate();
+    } else if (e.key === "Backspace") del();
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  });
 
   return (
     <main>
@@ -74,6 +66,7 @@ export default function CalculatorComponent() {
           calculate={calculate}
           del={del}
           clear={clear}
+          onKeyDown={handleKeyDown}
         />
       </Calculator>
     </main>

@@ -12,6 +12,7 @@ interface KeypadProps {
   del: () => void;
   clear: () => void;
   calculate: () => void;
+  onKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => void;
 }
 
 export const Keypad = (props: KeypadProps) => {
@@ -41,7 +42,7 @@ export const Keypad = (props: KeypadProps) => {
       >
         9
       </NumberKeys>
-      <DeleteKey>DEL</DeleteKey>
+      <DeleteKey onClick={props.del}>DEL</DeleteKey>
       <NumberKeys
         value="4"
         onClick={() => {
